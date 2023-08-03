@@ -34,7 +34,7 @@ const deleteCard = (req, res, next) => {
       if (card.owner.toString() !== req.user._id) {
         throw new Forbidden({ message: 'Невозможно удалить чужую карточку' });
       } else {
-        Card.deleteOne(cardId)
+        Card.deleteOne(card)
           .then(() => {
             res.send(card);
           });
@@ -52,7 +52,7 @@ const likeCard = (req, res, next) => {
   )
     .orFail(() => new NotFoundError({ message: 'Карточка с указанным _id не найдена.' }))
     .then((card) => {
-      res.send({ card });
+      res.send(card);
     })
     .catch(next);
 };

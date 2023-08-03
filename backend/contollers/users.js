@@ -9,7 +9,6 @@ const Unauthorized = require('../errors/Unauthorized');
 // контроллер на запрос создания пользователя
 const createUsers = (req, res, next) => {
   const { name, about, avatar, email, password } = req.body;
-
   if (!email || !password) {
     throw new BadRequestError({ message: 'email или пароль не могут быть пустыми' });
   } else {
@@ -94,6 +93,7 @@ const updateAvatar = (req, res, next) => {
 
 // контроллер на запрос аутентификации
 const login = (req, res, next) => {
+
   // отправляем почту и пароль
   const { email, password } = req.body;
 
@@ -113,18 +113,20 @@ const login = (req, res, next) => {
               // создать JWT
               const token = jwt.sign(
                 { _id: user._id },
-                process.env.JWT_SECRET,
+                process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret',
                 { expiresIn: '7d' }); // токен будет просрочен через 7 дней
 
               // прикрепить его к куке
-              res.cookie('jwt', token, {
-                maxAge: 604800, // время действия токена
-                httpOnly: true, // cookie доступны в рамках запроса http
-                sameSite: true, // позволяет отправлять куки только в рамках одного домена
-              });
-              res
-                .status(statusCode.OK)
-                .send(user.toJSON());
+              // res
+              //   .cookie('jwt', token, {
+              //   maxAge: 604800, // время действия токена
+              //   httpOnly: true, // cookie доступны в рамках запроса http
+              //   sameSite: true, // позволяет отправлять куки только в рамках одного домена
+              // });
+              // res
+              //   .status(statusCode.OK)
+              //   .send(user.toJSON());
+              res.status(200).send({token})
             } else {
               throw new Unauthorized({ message: 'Неправильные почта или пароль' });
             }
