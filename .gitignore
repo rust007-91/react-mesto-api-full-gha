@@ -35,3 +35,4 @@ node_modules
 # Optional REPL history
 .idea
 .vscode
+build
