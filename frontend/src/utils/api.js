@@ -87,7 +87,7 @@ const token = localStorage.getItem("token"); // получаем сохранё�
 
 // Инициализация данных для запроса данных с сервера
 const api = new Api({
-    url: "http://localhost:3000",
+    url: "api.rotkin.nomoreparties.co",
     headers: {
         "content-type": "application/json",
         authorization: `Bearer ${token}`,
