@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.35.124
+IP 158.160.35.124
 
-Frontend https: [rotkin.nomoreparties.co]
+Frontend https://rotkin.nomoreparties.co
 
-Backend https: [api.rotkin.nomoreparties.co]
+Backend https://api.rotkin.nomoreparties.co
