@@ -1,4 +1,4 @@
-const BASE_URL = 'api.rotkin.nomoreparties.co';
+const BASE_URL = 'https://api.rotkin.nomoreparties.co';
 
 const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
